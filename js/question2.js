@@ -9,8 +9,8 @@ For each game object in the results, the createGames function should create the 
 
 After the loop, all the HTML that was created should be assigned as the innerHTML value to the element above. */
 
-const baseUrl = "https://api.rawg.io/api";
-const gamesUrl = `${baseUrl}/games`;
+const baseUrl = "https://api.rawg.io/api/";
+const gamesUrl = `${baseUrl}games`;
 
 fetch(gamesUrl)
     .then(response => response.json())
