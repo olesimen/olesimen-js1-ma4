@@ -11,34 +11,26 @@ Inside createGameDetails replace the placeholder values in the HTML above with p
 
 Use either the background_image or background_image_additional property as the background image of the <div class="image"> element. */
 
-const gamesUrl = "https://api.rawg.io/api/games/4200";
+const gameUrl = "https://api.rawg.io/api/games/4200";
 
-fetch(gamesUrl)
+fetch(gameUrl)
     .then(response => response.json())
     .then(json => createGamesDetails(json))
     .catch(error => console.log(error));
 
 function createGamesDetails(json) {
-    const results = json.results;
-    console.dir(results);
+    // console.dir(json);
 
-    const heading = document.querySelector("h1");
-    const imageContainer = document.querySelector(".image");
-    const descriptionContainer = document.querySelector(".description");
+    const name = document.querySelector("h1");
+    name.innerHTML = json.name;
 
-    results.forEach(result => {
-        let gameName = result.name;
-        let imageUrl = "https://via.placeholder.com/1000";
-        let gameDescription = result.description;
+    const image = document.querySelector(".image");
+    if (json.background_image) {
+        image.style.backgroundImage = `url("${json.background_image}")`;
+    } else if (json.background_image_additional) {
+        image.style.backgroundImage = `url("${json.background_image_additional}")`;
+    }
 
-        if (result.background_image) {
-            imageUrl = result.background_image;
-        } else if (result.background_image_additional) {
-            imageUrl = result.background_image_additional;
-        }
-    });
-
-    heading.innerText.replace("${gameName}");
-    imageContainer.style("background-image") = `${imageUrl}`;
-    descriptionContainer.innerText.replace("${gameDescription}");
+    const description = document.querySelector(".description");
+    description.innerHTML = json.description;
 }
