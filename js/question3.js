@@ -15,7 +15,7 @@ const gameUrl = "https://api.rawg.io/api/games/4200";
 
 fetch(gameUrl)
     .then(response => response.json())
-    .then(json => createGamesDetails(json))
+    .then(json => createGameDetails(json))
     .catch(error => console.log(error));
 
 function createGameDetails(json) {
