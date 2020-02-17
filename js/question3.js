@@ -18,7 +18,7 @@ fetch(gameUrl)
     .then(json => createGamesDetails(json))
     .catch(error => console.log(error));
 
-function createGamesDetails(json) {
+function createGameDetails(json) {
     // console.dir(json);
 
     const name = document.querySelector("h1");
